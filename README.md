@@ -1,6 +1,10 @@
 # Faraday::Cache::Advanced
 
-TODO: Write a gem description
+A simple mechanism to cache POST requests via a faraday middleware.
+
+Cache Advanced is a tool for when you REALLY, REALLY need to cache POST HTTP requests via Faraday.  
+In general you SHOULD NOT cache POST calls, as they are not supposed to be idempotent, but yeah 
+that doesnt always hold in the real world.
 
 ## Installation
 
