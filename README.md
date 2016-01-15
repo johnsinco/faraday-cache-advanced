@@ -1,4 +1,4 @@
-# Faraday::Cache::Advanced
+# Cache-Advanced
 
 A simple mechanism to cache POST requests via a faraday middleware.
 
