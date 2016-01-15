@@ -1,9 +1,9 @@
 module Faraday
-  class PostCache < Faraday::Middleware
+  class CacheAdvanced < Faraday::Middleware
 
     attr_accessor :store
 
-    register_middleware :post_cache => PostCache
+    register_middleware :post_cache => CacheAdvanced
 
     def initialize(app, cache = nil, opts = {})
       if(storename = opts.delete(:store))
