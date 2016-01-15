@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+CacheAdvanced is designed to drop in to your Faraday middleware stack in the same way you'd use the standard faraday-middleware caching implementation.  The difference being CacheAdvanced doesnt give you opinion about what should/shouldnt be cached, it caches every call that comes thru that returns a :success.
 
 ## Contributing
 
