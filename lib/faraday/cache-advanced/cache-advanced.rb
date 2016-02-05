@@ -6,6 +6,7 @@ module Faraday
     register_middleware :post_cache => CacheAdvanced
 
     def initialize(app, cache = nil, opts = {})
+      @app = app
       if(storename = opts.delete(:store))
         @store = lookup_store(storename)
       else
@@ -24,12 +25,14 @@ module Faraday
 
       env[:response] = response
       env.update response.env unless env[:response_headers]
+      response.env[:method] = env[:method]
+      response.env[:url] = env[:url]
 
       response
     end
 
     def cache_key(env)
-      "#{env.url}/#{env.body}"
+      "#{env[:url]}/#{env[:body]}"
     end
 
     def lookup_store(name, opts)
