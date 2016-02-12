@@ -18,7 +18,8 @@ describe Faraday::CacheAdvanced do
       b.adapter :test do |stub|
         stub.get('/', &response)
         stub.get('/?foo=bar', &response)
-        stub.post('/', &response)
+        stub.post('/', {foo: 'bar'}, &response)
+        stub.post('/', {foo: 'bar', baz: 'meh'}, &response)
         stub.get('/other', &response)
         stub.get('/broken', &broken)
       end
@@ -52,10 +53,15 @@ describe Faraday::CacheAdvanced do
     expect(get('/').body).to eq('request:1')
   end
 
-  it 'does not cache post requests' do
-    # expect(post('/').body).to eq('request:1')
-    # expect(post('/').body).to eq('request:2')
-    # expect(post('/').body).to eq('request:3')
+  it 'caches POST requests by the BODY' do
+    expect(post('/', {foo: 'bar'}).body).to eq('request:1')
+    expect(post('/', {foo: 'bar'}).body).to eq('request:1')
+    expect(post('/', {foo: 'bar'}).body).to eq('request:1')
+  end
+
+  it 'caches posts requests by the alphabatized body params' do
+    expect(post('/', {foo: 'bar', baz: 'meh'}).body).to eq('request:1')
+    expect(post('/', {baz: 'meh', foo: 'bar'}).body).to eq('request:1')
   end
 
   it 'does not cache responses with invalid status code' do

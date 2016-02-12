@@ -32,7 +32,9 @@ module Faraday
     end
 
     def cache_key(env)
-      "#{env[:url]}/#{env[:body]}"
+      body = Hash(env[:body])
+      body_string = body.keys.sort.map {|key| "#{key}=#{body[key]}"}.join("&")
+      "#{env[:url]}/#{body_string}"
     end
 
     def lookup_store(name, opts)
