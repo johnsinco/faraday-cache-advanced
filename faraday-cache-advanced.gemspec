@@ -5,11 +5,11 @@ require 'faraday/cache-advanced/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "faraday-cache-advanced"
-  spec.version       = Faraday::Cache::Advanced::VERSION
+  spec.version       = Faraday::CacheAdvanced::VERSION
   spec.authors       = ["John Stewart"]
   spec.email         = ["johnsinco@icloud.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Simple caching middleware to cache ALL Requests including POST requests in faraday}
+  spec.description   = %q{Sometimes you gotta cache POST requests.  This gem gives you a Faraday middleware to cache POST requests.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
